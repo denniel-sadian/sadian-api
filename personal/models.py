@@ -12,7 +12,7 @@ class Project(models.Model):
     category = models.CharField(max_length=255)
     language_used = models.CharField("language(s) used", max_length=255)
     image = models.URLField()
-    date_created = models.DateField(default=timezone.now().date)
+    date_created = models.DateField(default=timezone.now)
     link = models.URLField(blank=True)
     description = models.TextField()
 
@@ -27,6 +27,9 @@ class Project(models.Model):
     @property
     def short_description(self):
         return self.description[:80]+'...'
+    
+    def save(self, *args, **kwargs):
+        super.send(arg, kwargs)
 
 
 class AboutMe(models.Model):
