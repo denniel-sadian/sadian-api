@@ -5,18 +5,18 @@ from django.dispatch import Signal
 
 from .models import Subscriber
 
-project_created = Signal(providing_args=['project'])
+article_created = Signal(providing_args=['article'])
 
 
-@receiver(project_created)
-def notify_subscribers(sender, project, **kwargs):
+@receiver(article_created)
+def notify_subscribers(sender, article, **kwargs):
     if Subscriber.objects.all().count():
         to_emails = set()
         for i in Subscriber.objects.all():
             to_emails.add(i.email)
-        subject = 'I have a new program!'
+        subject = 'New Article to read'
         from_email = settings.DEFAULT_FROM_EMAIL
-        message = 'New program!'
+        message = 'New article to read!'
         send_mail(subject, message, from_email, to_emails, html_message=f"""
-            <h1>Check it here: <a href="https://dsadian.herokuapp.com/detail/{project.id}/">
-            {project.name}</a></h1>""")
+            <h1>Read it here: <a href="https://dsadian.herokuapp.com/blog/detail/{article.id}/">
+            {article.headline}</a></h1>""")
