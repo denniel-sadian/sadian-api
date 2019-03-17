@@ -79,5 +79,6 @@ class Timeline(models.Model):
     title = models.CharField(max_length=255)
     image = models.URLField(blank=True)
     desc = models.TextField("description")
+    left = models.BooleanField(default=True)
 
     objects = models.Manager()

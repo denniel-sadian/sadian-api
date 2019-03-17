@@ -25,7 +25,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 class TimelineAdmin(admin.ModelAdmin):
-    list_display = ('year', 'title')
+    list_display = ('year', 'title', 'left')
     actions = ['delete_selected']
 
 
