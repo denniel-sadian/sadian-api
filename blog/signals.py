@@ -3,16 +3,16 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.dispatch import Signal
 
-from .models import Subscriber
+from . import models
 
 article_created = Signal(providing_args=['article'])
 
 
 @receiver(article_created)
 def notify_subscribers(sender, article, **kwargs):
-    if Subscriber.objects.all().count():
+    if models.Subscriber.objects.all().count():
         to_emails = set()
-        for i in Subscriber.objects.all():
+        for i in models.Subscriber.objects.all():
             to_emails.add(i.email)
         subject = 'New Article to read'
         from_email = settings.DEFAULT_FROM_EMAIL
