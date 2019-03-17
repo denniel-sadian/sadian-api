@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -11,7 +12,7 @@ class Project(models.Model):
     category = models.CharField(max_length=255)
     language_used = models.CharField("language(s) used", max_length=255)
     image = models.URLField()
-    date_created = models.DateField()
+    date_created = models.DateField(default=timezone.now().date)
     link = models.URLField(blank=True)
     description = models.TextField()
 
@@ -26,23 +27,6 @@ class Project(models.Model):
     @property
     def short_description(self):
         return self.description[:80]+'...'
-    
-    def save(self, *args, **kwargs):
-        it_is_new = False
-        if not self.id:
-            it_is_new = True
-        super().save(*args, **kwargs)
-        if it_is_new and Subscriber.objects.all().count():
-            to_emails = set()
-            for i in Subscriber.objects.all():
-                to_emails.add(i.email)
-            subject = 'I have a new program!'
-            from_email = settings.DEFAULT_FROM_EMAIL
-            message = 'New program!'
-            send_mail(subject, message, from_email, to_emails, html_message=f"""
-                <h1>Check it here: <a href="https://dsadian.herokuapp.com/detail/{self.id}/">
-                {self.name}</a></h1>
-            """)
 
 
 class AboutMe(models.Model):
