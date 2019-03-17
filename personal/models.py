@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 
 from blog.models import Subscriber
+from .signals import project_created
 
 
 class Project(models.Model):
@@ -12,7 +12,7 @@ class Project(models.Model):
     category = models.CharField(max_length=255)
     language_used = models.CharField("language(s) used", max_length=255)
     image = models.URLField()
-    date_created = models.DateField(default=timezone.now)
+    date_created = models.DateField()
     link = models.URLField(blank=True)
     description = models.TextField()
 
@@ -29,7 +29,9 @@ class Project(models.Model):
         return self.description[:80]+'...'
     
     def save(self, *args, **kwargs):
-        super.send(arg, kwargs)
+        if not self.id:
+            project_created.send(sender=self.__class__, project=self)
+        super().save(*args, **kwargs)
 
 
 class AboutMe(models.Model):
