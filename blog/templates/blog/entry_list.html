@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Home -{% endblock %}
+
+{% block prev_img %}
+https://denniel-sadian.github.io/images/icon.png
+{% endblock %}
+
+{% block content %}
+
+<article class="w3-container w3-col l9 w3-margin-top">
+    <h2><i class="fa fa-book"></i> Latest Articles</h2>
+    <div id="articles">
+        {% for i in entries %}
+            {% include 'blog/entry_item.html' with entry=i %}
+        {% endfor %}
+    </div>
+</article>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+
+<div id="contactModal" class="w3-modal">
+	<div class="w3-modal-content" style="background-image:url('{% static 'personal/images/header.png' %}')">
+        <div class="w3-container w3-padding w3-text-white">
+            <span class="closebtn w3-hover-text-red"
+                  style="display:absolute; float:right; font-size:20px"
+                  onclick="$('#contactModal').slideUp()"><i class="fa fa-close"></i></span>
+			<h2><i class="fa fa-pencil"></i> Contact me!</h2>
+		</div>
+        <div class="w3-container">
+            <form class="w3-container w3-padding w3-margin-bottom w3-white w3-center"
+                  style="background-image:url('{% static 'personal/images/article.png' %}')"
+                  onsubmit="return postComment()">
+                {% csrf_token %}
+                <input class="w3-input w3-margin-bottom w3-margin-top w3-border-gray w3-hover-border-green"
+                       placeholder="Full Name" id="name" required/>
+                <input class="w3-input w3-margin-bottom w3-border-gray w3-hover-border-green"
+                       placeholder="Email" id="email" required/>
+                <textarea class="w3-border-gray w3-hover-border-green" id="message"
+                          placeholder="Message..." required
+                          style="width:100%; height:100px"></textarea>
+                <div class="w3-right w3-margin-top w3-margin-bottom">
+                    <button type="reset" class="w3-button w3-padding w3-card-4 w3-red">
+                        <b><i class="fa fa-trash"></i> Clear</b></button>
+                    <button type="submit" class="w3-button w3-padding w3-card-4 w3-green w3-margin-left">
+                        <b><i class="fa fa-send"></i> Submit</b></button>
+                </div>
+            </form>
+        </div>
+	</div>
+</div>
+<script>
+function postComment() {
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'personal:contact' %}",
+        data: {
+            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            'full_name': $('#name').val(),
+            'email': $('#email').val(),
+            'content': $('#message').val()
+        },
+        success: function(data, status) {
+            if (status == 'success') {
+                alert("Thank you " + data['full_name'] + " for commenting!");
+                $('#contactModal').slideUp();
+            } else {
+                alert('Sorry. Something went wrong. Try again in a little bit!');
+            }
+        }
+    });
+    return false;
+}
+</script>

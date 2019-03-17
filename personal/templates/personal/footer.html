@@ -1,0 +1,41 @@
+<footer class="w3-container w3-padding-64 w3-center w3-margin-top w3-green w3-border-gray w3-topbar w3-bottombar">
+    <h3 class="w3-opacity">{{ week }} quote</h3>
+    <h2><i><i class="fa fa-quote-left"></i> {{ day.quote }} <i class="fa fa-quote-right"></i></i></h2>
+    <h4 class="w3-opacity">- {{ day.whose }}</h4>
+</footer>
+<div class="last-footer w3-container w3-center w3-margin-top">
+    <div style="font-size:40px">
+        <a style="color: #3b5998" href="https://www.facebook.com/dennielsadian" class="w3-hover-opacity"><i class="fa fa-facebook-square"></i></a>
+        <a style="color: #1DA1F2" href="https://twitter.com/dennielsadian" class="w3-hover-opacity"><i class="fa fa-twitter"></i></a>
+        <a style="color: #333" href="https://github.com/denniel-sadian" class="w3-hover-opacity"><i class="fa fa-github"></i></a>
+    </div>
+    <form id="subscribe-form" onsubmit="return subscribe()" class="w3-container" style="min-width:300px">
+        <input type="email" id="subscriber-email" class="w3-hover-light-gray" style="padding:8px; border:3px solid #e91e63; border-right:none; border-radius:32px 0px 0px 32px;"
+               placeholder="Your email" required/><button class="w3-hover-opacity w3-pink" type="submit"
+            style="padding:8px; border:3px solid #e91e63; color:white; border-radius:0px 32px 32px 0px;"><i class="fa fa-bell"></i>
+        <b class="w3-hide-small">Subscribe</b></button>
+    </form>
+    <p>Powered by Python's Django</p>
+    <p>Styled by w3.css</p>
+    <p>2017 - {{ year }}</p>
+</div>
+<script>
+function subscribe() {
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'blog:subscribe' %}",
+            data: {
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+                'email': $('#subscriber-email').val()
+            },
+            success: function(data) {
+                alert("Thank you for subscribing!");
+                $('#subscriber-email').val(data['email']);
+            },
+            error: function() {
+                alert("Subscriber with this email already exists. Try using something else!");
+            }
+        });
+        return false;
+    }
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
+
+<head>
+    {% load static %}
+    <title>Dein Sadian {% block title %}{% endblock %}</title>
+    <meta name="google-site-verification" content="FTZWO1Qq5IIiyHFq8P2FnK9nLlSAl2Ftgjtc8ppr5Is" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{% block desc %}{% endblock %}" />
+    <meta property="og:image" content="{% block prev_img %}{% endblock %}" />
+    <meta name="keywords" content="Denniel, Luis, Saway, Sadian, Python, Scripts, Games, GUI" />
+    <meta name="author" content="Denniel Luis Saway Sadian" />
+    <link rel="stylesheet" href="{% static 'personal/w3.css' %}" />
+    <link rel="stylesheet" href="{% static 'personal/main.css' %}" />
+    <link rel="icon" href="{% static 'personal/images/icon.png' %}" type="image/x-icon" />
+    <script rel="script" src="{% static 'personal/jquery.min.js' %}"></script>
+    <script rel="script" src="{% static 'personal/main.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body class="w3-light-gray">
+
+    <div id="sidebar_large" class="w3-text-white w3-sidebar w3-bar-block w3-card-4 w3-hide-medium w3-hide-small">
+        <div class="w3-bar-item w3-center w3-border-teal w3-bottombar">
+            <img src="{% static  'personal/images/me1.jpg' %}" class="face w3-image w3-circle w3-margin-top w3-card-4" width="150" />
+            <h3>Denniel Luis Saway Sadian</h3>
+        </div>
+        <a href="/" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-home"></i> Home</b>
+        </a>
+        <a href="/blog" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-book"></i> Blog</b>
+        </a>
+        <button class="w3-bar-item w3-button w3-large" onclick="$('#contactModal').slideDown()">
+            <b>
+                <i class="fa fa-send"></i> Contact</b>
+        </button>
+        <a href="/admin" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-gear"></i> Manage</b>
+        </a>
+        <a href="/about" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-info-circle"></i> About Me</b>
+        </a>
+    </div>
+    <div id="sidebar_small" class="w3-sidebar w3-text-white w3-bar-block w3-card-4 w3-animate-left w3-hide-large" style="display:none">
+        <button class="w3-button w3-hide-large w3-large" onclick="$('#sidebar_small').slideToggle()">
+            <i class="fa fa-close"></i>
+        </button>
+        <form action="{% url 'personal:index' %}" method="get" class="w3-bar-item w3-container w3-border-teal w3-bottombar">
+            <input name="q" type="text" class="w3-input w3-hover-light-gray w3-light-white
+        w3-col s10" placeholder="Search project..." value="{{ searched }}" style="border:0px; border-radius:32px 0px 0px 32px;"
+                required="required"/>
+            <button type="submit" class="w3-button w3-teal w3-hover-pink w3-col s2" style="border-radius:0px 32px 32px 0px;">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+        <a href="/" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-home"></i> Home</b>
+        </a>
+        <a href="/blog" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-book"></i> Blog</b>
+        </a>
+        <button class="w3-bar-item w3-button w3-large" onclick="$('#contactModal').slideDown()">
+            <b>
+                <i class="fa fa-send"></i> Contact</b>
+        </button>
+        <a href="/admin" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-gear"></i> Manage</b>
+        </a>
+        <a href="/about" class="w3-bar-item w3-button w3-large">
+            <b>
+                <i class="fa fa-info-circle"></i> About Me</b>
+        </a>
+    </div>
+
+    <header class="w3-container w3-text-white w3-border-gray w3-bottombar" style="padding:0px">
+        <button class="w3-button w3-hide-large w3-large" onclick="$('#sidebar_small').slideToggle()">
+            <i class="fa fa-bars"></i>
+        </button>
+        <form action="{% url 'personal:index' %}#list" method="get" class="w3-container w3-hide-small w3-hide-medium
+          w3-display-topright w3-margin-top">
+            <input name="q" type="text" class="w3-input w3-hover-light-gray w3-light-white
+        w3-col s10" placeholder="Search project..." value="{{ searched }}" style="border:0px; border-radius:32px 0px 0px 32px;"
+                required="required"/>
+            <button type="submit" class="w3-button w3-pink w3-hover-green w3-col s2" style="border-radius:0px 32px 32px 0px;">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+        <h1 class="w3-padding">My Portfolio</h1>
+        <div class="w3-container w3-margin-bottom">
+            <div class="w3-bar w3-hide-small w3-large">
+                {% if category == 'all' %}
+                <a href="/" class="w3-bar-item w3-button w3-pink w3-border-pink w3-bottombar">All</a>
+                {% else %}
+                <a href="/" class="w3-bar-item w3-button w3-light-gray w3-border-pink w3-bottombar">All</a>
+                {% endif %} {% for i in categories %} {% if category == i %}
+                <a href="/?category={{ i }}" class="w3-bar-item w3-button w3-pink w3-border-pink w3-bottombar">{{ i|title }}</a>
+                {% else %}
+                <a href="/?category={{ i }}" class="w3-bar-item w3-button w3-light-gray w3-border-pink w3-bottombar">{{ i|title }}</a>
+                {% endif %} {% endfor %}
+            </div>
+        </div>
+        <div class="w3-large w3-dropdown-hover w3-margin-left w3-margin-bottom w3-hide-medium w3-hide-large">
+            <button class="w3-button w3-pink">
+                <i class="fa fa-caret-down"></i> {% if not category %}Filters{% else %}{{ category|title }}{% endif %}</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border w3-card-4">
+                {% if category != 'all' %}
+                <a href="/" class="w3-bar-item w3-button w3-light-gray">All</a>
+                {% endif %} {% for i in categories %} {% if category != i %}
+                <a href="/?category={{ i }}" class="w3-bar-item w3-button w3-light-gray">{{ i|title }}</a>
+                {% endif %} {% endfor %}
+            </div>
+        </div>
+        <div class="w3-padding w3-display-topright w3-hide-large">
+            <a href="/about">
+                <img src="{% static 'personal/images/me1.jpg' %}" style="min-height:80px!important; max-height:80px!important" width="80" class="face w3-image w3-circle w3-card" />
+            </a>
+        </div>
+    </header>
+
+    <div id="content" class="w3-container">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include 'personal/footer.html' %} {% include 'personal/contact_form.html' %}
+
+</body>
+
+</html>

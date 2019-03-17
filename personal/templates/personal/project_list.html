@@ -1,0 +1,81 @@
+{% extends "personal/base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if searched %}
+        | {{ searched }}
+    {% elif category and category != 'all' %}
+        | {{ category|title }}s
+    {% endif %}
+{% endblock %}
+
+{% block desc %}
+    {% if searched %}
+        {% if how_many_really > 0 %}
+            {{ how_many_really }} result{% if how_many_really > 1 %}s were{% endif %} found in your search.
+        {% else %}
+            No result found.
+        {% endif %}
+    {% elif category and category != 'all' %}
+        He has written {{ how_many_really }} {{ category|title }}{% if how_many_really > 1 %}s{% endif %}.
+    {% else %}
+        Welcome to Denniel Sadian's portfolio!
+    {% endif %}
+{% endblock %}
+
+{% block prev_img %}
+    https://denniel-sadian.github.io/images/icon.png      
+{% endblock %}
+
+{% block content %}
+
+{% if projects %}
+    <h3 class="w3-text-green">Total of
+        <span class="w3-tag w3-round w3-green w3-animate-opacity">{{ how_many_really }}</span>
+    </h3>
+{% else %}
+    <h1 class="w3-text-red w3-center w3-animate-zoom">Sorry, found none.</h1>
+{% endif %}
+
+{% for i in projects %}
+<div class="w3-animate-zoom w3-col l4 m6 w3-container w3-margin-top w3-margin-bottom">
+    <div class="container w3-card-4 w3-border w3-border-gray"
+         onclick="window.location.assign('/detail/{{ i.id }}')">
+        <img src="{{ i.image }}" alt="Notebook" style="width:100%;" class="w3-image proj-image">
+        <div class="content">
+            <h4>{{ i.name }}</h4>
+            <p class="w3-small">{{ i.date_created }}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% if how_many_really > 9 %}
+<div class="w3-container w3-center w3-margin-bottom">
+    <span class="step-links">
+        {% if projects.has_previous %}
+        <a href="{% url 'personal:index' %}?page={{ projects.previous_page_number }}{% if searched %}&q={{ searched }}{% endif %}{% if category and category != 'all' %}&category={{ category }}{% endif %}" style="text-decoration:none"
+           class="w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+            <i class="fa fa-chevron-left"></i></a>
+        {% endif %}
+        {% if not projects.has_previous %}
+        <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+            <i class="fa fa-chevron-left"></i></span>
+        {% endif %}
+        <span class="current">
+            {{ projects.number }} of {{ projects.paginator.num_pages }}
+        </span>
+        {% if projects.has_next %}
+        <a href="{% url 'personal:index' %}?page={{ projects.next_page_number }}{% if searched %}&q={{ searched }}{% endif %}{% if category and category != 'all' %}&category={{ category }}{% endif %}"
+           style="text-decoration:none" class="w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+            <i class="fa fa-chevron-right"></i></a>
+        {% endif %}
+        {% if not projects.has_next %}
+        <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+            <i class="fa fa-chevron-right"></i></span>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+
+{% endblock %}

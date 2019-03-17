@@ -1,0 +1,56 @@
+{% extends "personal/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    | {{ project.name|title }} | {{ project.category|title }}
+{% endblock %}
+
+{% block desc %}
+    {{ project.description }}
+{% endblock %}
+
+{% block prev_img %}
+    {{ project.image }}
+{% endblock %}
+
+{% block content %}
+<h2 class="w3-center">
+    {% if user.is_authenticated %}
+    <a href="{% url 'admin:personal_project_change' project.id %}">
+        <i class="fa fa-pencil"></i> {{ project.name }}</a>
+    {% else %} {{ project.name }} {% endif %}
+</h2>
+
+<div class="w3-row">
+    <div class="w3-margin-top w3-col m6 w3-padding">
+        <div class="w3-center">
+            <img src="{{ project.image }}" class="w3-image">
+        </div>
+    </div>
+    <div class="w3-col m6 w3-padding w3-container w3-margin-top w3-white w3-border-gray w3-leftbar w3-round">
+        <dl>
+            <dt class="w3-large">Date created:</dt>
+            <dd class="w3-margin-bottom">{{ project.date_created }}</dd>
+            <dt class="w3-large">Programming language/s:</dt>
+            <dd class="w3-margin-bottom">{{ project.language_used }}</dd>
+            <dt class="w3-large">Type:</dt>
+            <dd class="w3-margin-bottom">{{ project.category|title }}</dd>
+            <dt class="w3-large">Description:</dt>
+            <dd class="w3-margin-bottom">{{ project.description }}</dd>
+            <dt class="w3-large">Source code:</dt>
+            {% if project.link %}
+            <dd>You can find the source code
+                <a href="{{ project.link }}" class="w3-text-red w3-hover-blue w3-large">here</a>.</dd>
+            {% else %}
+            <dd>Source code not available. please
+                <span class="w3-large w3-text-pink w3-hover-blue w3-round" onclick="$('#contactModal').slideDown()" style="cursor:pointer">contact</span>
+                the programmer if you want to have the source code. Denniel is very lazy. You could just visit him on github, maybe he has
+                pushed the source code there.
+            </dd>
+            {% endif %}
+        </dl>
+    </div>
+</div>
+
+{% endblock %}
