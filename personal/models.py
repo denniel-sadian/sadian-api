@@ -72,3 +72,12 @@ class Comment(models.Model):
         if len(str(self.content)) < 100:
             return self.content
         return self.content[:100]+'...'
+
+
+class Timeline(models.Model):
+    year = models.IntegerField()
+    title = models.CharField(max_length=255)
+    image = models.URLField(blank=True)
+    desc = models.TextField("description")
+
+    objects = models.Manager()

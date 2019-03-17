@@ -24,7 +24,13 @@ class CommentAdmin(admin.ModelAdmin):
     actions = ['delete_selected']
 
 
+class TimelineAdmin(admin.ModelAdmin):
+    list_display = ('year', 'title')
+    actions = ['delete_selected']
+
+
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Day, DayAdmin)
 admin.site.register(AboutMe, AboutMeAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Timeline, TimelineAdmin)
