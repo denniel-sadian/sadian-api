@@ -97,7 +97,7 @@ class AboutMeListView(generic.ListView):
         context['categories'] = get_categories()
 
         #getting timelines
-        context['timelines'] = Timeline.objects.all()
+        context['timelines'] = Timeline.objects.all().order_by('-year')
 
         # getting the day, year and week
         context['day'], context['year'], context['week'] = get_day_year_week()

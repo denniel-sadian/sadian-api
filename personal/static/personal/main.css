@@ -100,7 +100,7 @@ header, body, footer {
   height: 25px;
   right: -12px;
   background-color: white;
-  border: 4px solid #9c27b0;
+  border: 6px solid #9c27b0;
   top: 18px;
   border-radius: 50%;
   z-index: 1;
@@ -151,10 +151,10 @@ header, body, footer {
 
 /* The actual content */
 .timeline-content {
-  padding: 20px 30px;
+  padding: 10px 10px;
   background-color: white;
   position: relative;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
@@ -168,7 +168,7 @@ header, body, footer {
   .timeline-container {
     width: 100%;
     padding-left: 70px;
-    padding-right: 25px;
+    padding-right: 5px;
   }
 
 /* Make sure that all arrows are pointing leftwards */

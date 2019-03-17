@@ -82,3 +82,10 @@ class Timeline(models.Model):
     left = models.BooleanField(default=True)
 
     objects = models.Manager()
+
+    def save(self, *args, **kwargs):
+        if self.__class__.objects.all().count():
+            latest = self.__class__.objects.all().order_by('-year')[0]
+            if latest.left:
+                self.left = False
+        super().save(*args, **kwargs)
