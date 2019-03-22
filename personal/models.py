@@ -77,7 +77,7 @@ class Comment(models.Model):
 class Timeline(models.Model):
     year = models.IntegerField()
     title = models.CharField(max_length=255)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(upload_to='timelines', blank=True)
     desc = models.TextField("description")
     left = models.BooleanField(default=True)
 
