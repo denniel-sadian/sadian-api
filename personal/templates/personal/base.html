@@ -28,25 +28,25 @@
             <img src="{% static  'personal/images/me.jpg' %}" class="face w3-image w3-circle w3-margin-top w3-card-4" width="150" />
             <h3>Denniel Luis Saway Sadian</h3>
         </div>
-        <a href="/" class="w3-bar-item w3-button w3-large">
+        <a href="/" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-home"></i> Home</b>
         </a>
-        <a href="/blog" class="w3-bar-item w3-button w3-large">
+        <a href="/blog" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-book"></i> Blog</b>
         </a>
-        <button class="w3-bar-item w3-button w3-large" onclick="$('#contactModal').slideDown()">
+        <button class="w3-bar-item w3-button w3-large w3-round-xxlarge" onclick="$('#contactModal').slideDown()">
             <b>
                 <i class="fa fa-send"></i> Contact</b>
         </button>
-        <a href="/admin" class="w3-bar-item w3-button w3-large">
-            <b>
-                <i class="fa fa-gear"></i> Manage</b>
-        </a>
-        <a href="/about" class="w3-bar-item w3-button w3-large">
+        <a href="/about" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-info-circle"></i> About Me</b>
+        </a>
+        <a href="/admin" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
+            <b>
+                <i class="fa fa-gear"></i> Manage</b>
         </a>
     </div>
     <div id="sidebar_small" class="w3-sidebar w3-text-white w3-bar-block w3-card-4 w3-animate-left w3-hide-large" style="display:none">
@@ -61,23 +61,23 @@
                 <i class="fa fa-search"></i>
             </button>
         </form>
-        <a href="/" class="w3-bar-item w3-button w3-large">
+        <a href="/" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-home"></i> Home</b>
         </a>
-        <a href="/blog" class="w3-bar-item w3-button w3-large">
+        <a href="/blog" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-book"></i> Blog</b>
         </a>
-        <button class="w3-bar-item w3-button w3-large" onclick="$('#contactModal').slideDown()">
+        <button class="w3-bar-item w3-button w3-large w3-round-xxlarge" onclick="$('#contactModal').slideDown()">
             <b>
                 <i class="fa fa-send"></i> Contact</b>
         </button>
-        <a href="/admin" class="w3-bar-item w3-button w3-large">
+        <a href="/admin" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-gear"></i> Manage</b>
         </a>
-        <a href="/about" class="w3-bar-item w3-button w3-large">
+        <a href="/about" class="w3-bar-item w3-button w3-large w3-round-xxlarge">
             <b>
                 <i class="fa fa-info-circle"></i> About Me</b>
         </a>
@@ -96,7 +96,8 @@
                 <i class="fa fa-search"></i>
             </button>
         </form>
-        <h1 class="w3-padding">My Portfolio</h1>
+        <h1 class="w3-padding w3-hide-medium w3-hide-small">Welcome to my Portfolio</h1>
+        <h1 class="w3-padding w3-hide-large">Denniel's Portfolio</h1>
         <div class="w3-container w3-margin-bottom">
             <div id="large-category" class="w3-bar w3-hide-small w3-large">
                 {% if category == 'all' %}
@@ -112,7 +113,7 @@
         </div>
         <div class="w3-large w3-dropdown-hover w3-margin-left w3-margin-bottom w3-hide-medium w3-hide-large">
             <button class="w3-button w3-purple w3-round-xxlarge">
-                <i class="fa fa-caret-down"></i> {% if not category %}Filters{% else %}{{ category|title }}{% endif %}</button>
+                <i class="fa fa-caret-down"></i> {% if not category %}Categories{% else %}{{ category|title }}{% endif %}</button>
             <div class="w3-dropdown-content w3-center w3-bar-block w3-border w3-card-4 w3-round-xxlarge">
                 {% if category != 'all' %}
                 <a href="/" class="w3-bar-item w3-button w3-light-gray w3-round-xxlarge">All</a>
