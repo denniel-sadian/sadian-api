@@ -1,8 +1,7 @@
 from django.utils import timezone
-from django.core.mail import send_mail
+from django.conf import settings
 from django.conf import settings
 from django.core.mail import send_mail
-from django.conf import settings
 
 from rest_framework import generics
 from rest_framework import viewsets
@@ -12,6 +11,7 @@ from rest_framework import status
 
 from . import serializers
 from . import models
+from .signals import subscriber_created
 
 
 class EntryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -77,12 +77,7 @@ class SubscriberCreateView(generics.CreateAPIView):
         serializer = self.serializer_class(data=model_data)
         if serializer.is_valid():
             serializer.save()
-            # Email myself
-            subject = 'Thanks!'
-            from_email = settings.DEFAULT_FROM_EMAIL
-            to_email = [data['email']]
-            contact_message = "Thank you for subscribing, you'll never regret it."
-            send_mail(subject, contact_message, from_email, to_email)
+            subscriber_created.send(self.__class__, email=data['email'])
             return Response(data=serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(data={'details': 'Subscriber with this email already exists.'},

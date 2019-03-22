@@ -5,7 +5,7 @@ from personal.models import *
 def rearrange_timelines(model_admin, request, queryset):
     if queryset.count() > 0:
         left = False
-        for i in queryset.order_by('year'):
+        for i in queryset.order_by('date'):
             if left:
                 left = False
             else:
