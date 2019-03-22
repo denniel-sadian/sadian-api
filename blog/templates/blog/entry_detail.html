@@ -84,11 +84,11 @@
                     <div class="w3-center w3-margin-bottom">
                         <span class="step-links">
                             {% if comments.has_previous %}
-                            <a href="?page={{ comments.previous_page_number }}#commentSection" style="text-decoration:none" class="w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                            <a href="?page={{ comments.previous_page_number }}#commentSection" style="text-decoration:none" class="w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                                 <i class="fa fa-chevron-left"></i>
                             </a>
                             {% endif %} {% if not comments.has_previous %}
-                            <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                            <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                                 <i class="fa fa-chevron-left"></i>
                             </span>
                             {% endif %}
@@ -96,11 +96,11 @@
                                 {{ comments.number }} of {{ comments.paginator.num_pages }}
                             </span>
                             {% if comments.has_next %}
-                            <a href="?page={{ comments.next_page_number }}#commentSection" style="text-decoration:none" class="w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                            <a href="?page={{ comments.next_page_number }}#commentSection" style="text-decoration:none" class="w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                                 <i class="fa fa-chevron-right"></i>
                             </a>
                             {% endif %} {% if not comments.has_next %}
-                            <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                            <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                                 <i class="fa fa-chevron-right"></i>
                             </span>
                             {% endif %}

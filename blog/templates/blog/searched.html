@@ -21,11 +21,11 @@
             <span class="step-links">
                 {% if entries.has_previous %}
                 <a href="?page={{ entries.previous_page_number }}&q={{ searched }}" style="text-decoration:none"
-                   class="w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                   class="w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                     <i class="fa fa-chevron-left"></i></a>
                 {% endif %}
                 {% if not entries.has_previous %}
-                <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                     <i class="fa fa-chevron-left"></i></span>
                 {% endif %}
                 <span class="current">
@@ -33,17 +33,17 @@
                 </span>
                 {% if entries.has_next %}
                 <a href="?page={{ entries.next_page_number }}&q={{ searched }}"
-                   style="text-decoration:none" class="w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                   style="text-decoration:none" class="w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                     <i class="fa fa-chevron-right"></i></a>
                 {% endif %}
                 {% if not entries.has_next %}
-                <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-pink w3-round-xxlarge">
+                <span style="text-decoration:none" class="w3-disabled w3-button w3-gray w3-hover-purple w3-round-xxlarge">
                     <i class="fa fa-chevron-right"></i></span>
                 {% endif %}
             </span>
         </div>
         {% else %}
-        <div class="w3-container w3-card-4 w3-margin-top w3-margin-bottom w3-padding w3-pink w3-row">
+        <div class="w3-container w3-card-4 w3-margin-top w3-margin-bottom w3-padding w3-purple w3-row">
             <h1 class="w3-col m8">Sorry, no result found</h1>
             <img src="{% static 'blog/haha.png' %}" class="w3-image w3-col m4" width="300"/>
         </div>

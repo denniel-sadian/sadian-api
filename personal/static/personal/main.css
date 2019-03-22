@@ -2,8 +2,14 @@ header, footer, .last-footer, #content { margin-left: 25% }
 #sidebar_large { display:block; width:25% }
 #sidebar_large, #sidebar_small {
     background: url("images/article.png");
-    background: linear-gradient(#111111, #009688);
+    background: linear-gradient(#111111, #9c27b0);
     background-size: cover;
+}
+#large-category a:first-child {
+  border-radius: 32px 0px 0px 32px;
+}
+#large-category a:last-child {
+  border-radius: 0px 32px 32px 0px;
 }
 #sidebar_large { width:25% }
 header, footer {
@@ -41,6 +47,8 @@ header, body, footer {
 .container img {
     vertical-align: middle;
     transition: 0.3s;
+    width: 100%;
+    border-radius: 15px;
 }
 
 .container img:hover {
@@ -51,15 +59,13 @@ header, body, footer {
     position: absolute;
     bottom: 0;
     background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    background: #9c27b0;
     color: #f1f1f1;
     width: 100%;
     padding: 5px;
-    overflow-x: auto;
+    overflow: hidden;
     transition: 0.3s;
-}
-.container .content:hover {
-    background: gray;
+    border-radius: 0px 0px 14px 14px;
 }
 .container .content h4 {
     white-space: nowrap
