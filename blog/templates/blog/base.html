@@ -67,11 +67,11 @@ font-size: 80px;
 <body class="w3-light-gray">
 
     <nav id="sidebar_small" class="w3-sidebar w3-bar-block w3-card-4 w3-animate-left
-w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background: linear-gradient(#111111, #009688);">
+w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background: linear-gradient(#111111, #9c27b0);">
         <button class="w3-button w3-hide-large w3-large" onclick="$('#sidebar_small').slideToggle()">
             <i class="fa fa-close"></i>
         </button>
-        <form action="{% url 'blog:index' %}" method="get" class="w3-bar-item w3-container w3-border-teal w3-bottombar">
+        <form action="{% url 'blog:index' %}" method="get" class="w3-bar-item w3-container w3-border-purple w3-bottombar">
             {% csrf_token %}
             <input name="q" type="text" class="w3-input w3-hover-light-gray w3-light-white
         w3-col s10" placeholder="Search article..." value="{{ searched }}" style="border:0px; border-radius:32px 0px 0px 32px"
