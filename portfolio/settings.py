@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'personal',
     'blog',
+    'custom_tags_filters'
 ]
 
 # DRF
