@@ -11,7 +11,7 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     language_used = models.CharField("language(s) used", max_length=255)
-    image = models.URLField()
+    image = models.ImageField()
     date_created = models.DateField()
     link = models.URLField(blank=True)
     description = models.TextField()
@@ -77,7 +77,7 @@ class Comment(models.Model):
 class Timeline(models.Model):
     year = models.IntegerField()
     title = models.CharField(max_length=255)
-    image = models.URLField(blank=True)
+    image = models.ImageField(blank=True)
     desc = models.TextField("description")
     left = models.BooleanField(default=True)
 
