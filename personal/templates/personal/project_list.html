@@ -41,7 +41,7 @@
 <div class="w3-animate-zoom w3-col l4 m6 w3-container w3-margin-top w3-margin-bottom">
     <div class="container w3-hover-shadow w3-border w3-border-purple w3-round-xlarge"
          onclick="window.location.assign('/detail/{{ i.id }}')">
-        <img src="{{ i.image }}" alt="Notebook" class="w3-image proj-image">
+        <img src="{{ i.image.url }}" alt="{{ i.name }}" class="w3-image proj-image">
         <div class="content">
             <h4>{{ i.name }}</h4>
             <p class="w3-small">{{ i.date_created }}</p>

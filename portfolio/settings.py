@@ -151,6 +151,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
+DEFAULT_FILE_STORAGE = 'portfolio.storage_backends.MediaFileStorage'
+
 
 # Sendgrid settings
 SEND_GRID_API_KEY = os.getenv('SEND_GRID_API_KEY')
