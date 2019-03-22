@@ -1,7 +1,17 @@
+{% load static %}
+{% load extras %}
+
+<style>
+footer {
+    background: url("{% static 'images/header.png' %}") no-repeat fixed;
+    background-size: cover;
+}
+</style>
+
 <footer class="w3-container w3-padding-64 w3-center w3-margin-top w3-purple w3-border-purple w3-topbar w3-bottombar">
-    <h3 class="w3-opacity">{{ week }} quote</h3>
-    <h2><i><i class="fa fa-quote-left"></i> {{ day.quote }} <i class="fa fa-quote-right"></i></i></h2>
-    <h4 class="w3-opacity">- {{ day.whose }}</h4>
+    <h3 class="w3-opacity">{% current_week_name %} quote</h3>
+    <h2><i><i class="fa fa-quote-left"></i> {% current_day 'quote' %} <i class="fa fa-quote-right"></i></i></h2>
+    <h4 class="w3-opacity">- {% current_day 'by' %}</h4>
 </footer>
 <div class="last-footer w3-container w3-center w3-margin-top">
     <div style="font-size:40px">
@@ -17,7 +27,7 @@
     </form>
     <p>Powered by Python's Django</p>
     <p>Styled by w3.css</p>
-    <p>2017 - {{ year }}</p>
+    <p>2017 - {% current_year %}</p>
 </div>
 <script>
 function subscribe() {

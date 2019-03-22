@@ -3,14 +3,14 @@ function writeArchive() {
         var a_ul = $('<ul class="w3-ul"></ul>');
         for (var i in data) {
             var li = $('<li></li>');
-            var b_ul = $('<ul class="w3-ul w3-border-green w3-leftbar ar_for_'+i+'"></ul>');
+            var b_ul = $('<ul class="w3-ul w3-border-purple w3-leftbar ar_for_'+i+'"></ul>');
             li.append(
                 "<span class=\"w3-large w3-button\" style=\"padding:2px\" onclick=\"$('.ar_for_"+i+"').slideToggle()\">"+i+"</span>"
             );
             li.append(b_ul);
             for (var e in data[i]) {
                 var b_li = $('<li></li>');
-                var c_ul = $('<ul class="w3-ul w3-border-green w3-leftbar list_for_'+e+'_'+i+'"><ul>');
+                var c_ul = $('<ul class="w3-ul w3-border-purple w3-leftbar list_for_'+e+'_'+i+'"><ul>');
                 b_li.prepend(c_ul);
                 b_li.prepend(
                     '<span class="w3-large w3-button" style="padding:2px" onclick="$(\'.list_for_'+e+'_'+i+'\').slideToggle()">'+e+'</span>'

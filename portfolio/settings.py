@@ -61,7 +61,7 @@ REST_FRAMEWORK = {
 
 # Personal
 PROFILE_PICTURE = os.getenv('PROFILE_PICTURE',
-    'http://127.0.0.1:8000/static/personal/images/me.jpg')
+    'http://127.0.0.1:8000/static/images/me.jpg')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -146,6 +146,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 
 # Sendgrid settings

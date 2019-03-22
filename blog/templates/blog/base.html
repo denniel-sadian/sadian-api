@@ -1,24 +1,68 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:fb="http://ogp.me/ns/fb#">
 
 <head>
-    {% load static %}
-    <title>{% block title %}{% endblock %} Code Philosophy</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:image" content="{% block prev_img %}{% endblock %}" />
-    <meta name="description" content="{% if entry %}{{ entry.preview_content }}{% else %}Micro blog of Denniel Luis Saway Sadian{% endif %}" />
-    <meta name="keywords" content="Denniel, Luis, Saway, Sadian, Python, Scripts, Games, GUI" />
-    <meta name="author" content="Denniel Luis Saway Sadian" />
-    <link rel="stylesheet" href="{% static 'personal/w3.css' %}" />
-    <link rel="stylesheet" href="{% static 'blog/main.css' %}" />
-    <link rel="icon" href="{% static 'personal/images/icon.png' %}" type="image/x-icon" />
-    <script rel="script" src="{% static 'personal/jquery.min.js' %}"></script>
-    <script rel="script" src="{% static 'blog/main.js' %}"></script>
-    <script rel="script" src="{% static 'personal/main.js' %}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<title>{% block title %}{% endblock %} Code Philosophy</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:image" content="{% block prev_img %}{% endblock %}" />
+<meta name="description" content="{% if entry %}{{ entry.preview_content }}{% else %}Micro blog of Denniel Luis Saway Sadian{% endif %}" />
+<meta name="keywords" content="Denniel, Luis, Saway, Sadian, Python, Scripts, Games, GUI" />
+<meta name="author" content="Denniel Luis Saway Sadian" />
+<link rel="stylesheet" href="{% static 'w3.css' %}" />
+<link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+<script rel="script" src="{% static 'jquery.min.js' %}"></script>
+<script rel="script" src="{% static 'blog/main.js' %}"></script>
+<script rel="script" src="{% static 'main.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<style>
+.entry-image {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+header, footer {
+background: url("{% static 'images/header.png' %}") no-repeat fixed;
+background-size: cover;
+}
+header div h1 {
+letter-spacing: 10px;
+}
+#largeNav {
+background: url("{% static 'images/body.png' %}") no-repeat fixed;
+background-size: cover;
+}
+textarea {
+width: 100%;
+height: 150px;
+padding: 10px;
+}
+.closebtn {
+text-decoration: none;
+float: right;
+font-size: 24px;
+font-weight: bold;
+color: inherit;
+}
+@media (min-width: 320px) and (max-width: 768px) {
+header div h1 {
+font-size: 40px;
+letter-spacing: 0;
+}
+.entry-image {
+height: 200px;
+}
+}
+@media (min-width: 769px) {
+header div h1 {
+font-size: 80px;
+}
+}
+</style>
 </head>
 
 <body class="w3-light-gray">
@@ -33,7 +77,7 @@ w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background
             <input name="q" type="text" class="w3-input w3-hover-light-gray w3-light-white
         w3-col s10" placeholder="Search article..." value="{{ searched }}" style="border:0px; border-radius:32px 0px 0px 32px"
                 required/>
-            <button type="submit" class="w3-button w3-green w3-hover-light-green w3-col s2" style="border-radius:0px 32px 32px 0px">
+            <button type="submit" class="w3-button w3-purple w3-hover-light-purple w3-col s2" style="border-radius:0px 32px 32px 0px">
                 <i class="fa fa-search"></i>
             </button>
         </form>
@@ -63,17 +107,17 @@ w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background
         style="background:none">
         <i class="fa fa-list-ul"></i>
     </button>
-    <header class="w3-container w3-green w3-padding w3-border-gray w3-bottombar">
+    <header class="w3-container w3-purple w3-padding w3-border-purple w3-bottombar">
         <div class="w3-content w3-padding w3-margin-top w3-center">
             <h1>Code Philosophy</h1>
             <p class="w3-large">Welcome to the blog of
-                <span class="w3-round-xxlarge w3-hover-yellow w3-hover-text-black w3-black w3-hover-border-yellow w3-border-black w3-bottombar w3-leftbar w3-topbar
+                <span class="w3-round-xxlarge w3-hover-yellow w3-hover-text-black w3-purple w3-hover-border-yellow w3-border-purple w3-bottombar w3-leftbar w3-topbar
             w3-rightbar"><a href="{% url 'personal:about' %}" style="text-decoration: none">@dennielsadian</a></span>
             </p>
         </div>
     </header>
 
-    <nav id="largeNav" class="w3-bar w3-black w3-large w3-border-gray w3-bottombar w3-hide-small">
+    <nav id="largeNav" class="w3-bar w3-black w3-large w3-border-purple w3-bottombar w3-hide-small">
         <div class="w3-content">
             <a href="/blog" class="w3-bar-item w3-button">
                 <b>
@@ -96,7 +140,7 @@ w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background
                 <input name="q" type="search" class="w3-input w3-hover-light-gray w3-light-white
             w3-col s10" placeholder="Search..." value="{{ searched }}" style="border:0px; padding:3px; margin:4.5px 0px 4.5px 0px;
                           border-radius:32px 0px 0px 32px" required/>
-                <button type="submit" class="w3-button w3-green w3-hover-light-green w3-col s2" style="padding:3px; margin:4.5px 0px 4.5px 0px;
+                <button type="submit" class="w3-button w3-purple w3-hover-gray w3-col s2" style="padding:3px; margin:4.5px 0px 4.5px 0px;
                            border-radius:0px 32px 32px 0px">
                     <i class="fa fa-search"></i>
                 </button>
