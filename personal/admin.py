@@ -2,6 +2,20 @@ from django.contrib import admin
 from personal.models import *
 
 
+def rearrange_timelines(model_admin, request, queryset):
+    if queryset.count() > 0:
+        left = False
+        for i in queryset.order_by('date'):
+            if left:
+                left = False
+            else:
+                left = True
+            i.left = left
+            i.save()
+        model_admin.message_user(
+            request, 'They have been rearranged.')
+
+
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'language_used',
                     'image', 'link', 'date_created')
@@ -24,7 +38,13 @@ class CommentAdmin(admin.ModelAdmin):
     actions = ['delete_selected']
 
 
+class TimelineAdmin(admin.ModelAdmin):
+    list_display = ('date', 'title', 'left')
+    actions = ['delete_selected', rearrange_timelines]
+
+
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Day, DayAdmin)
 admin.site.register(AboutMe, AboutMeAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Timeline, TimelineAdmin)

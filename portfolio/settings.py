@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'personal',
     'blog',
+    'custom_tags_filters'
 ]
 
 # DRF
@@ -57,6 +58,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+
+# Personal
+PROFILE_PICTURE = os.getenv('PROFILE_PICTURE',
+    'http://127.0.0.1:8000/static/images/me.jpg')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,6 +146,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
+DEFAULT_FILE_STORAGE = 'portfolio.storage_backends.MediaFileStorage'
 
 
 # Sendgrid settings

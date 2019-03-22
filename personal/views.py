@@ -2,7 +2,10 @@ from django.views import generic
 from django.utils import timezone
 from django.core.paginator import Paginator
 
-from .models import Project, Day, AboutMe
+from .models import Project
+from .models import Day
+from .models import AboutMe
+from .models import Timeline
 
 
 def get_categories():
@@ -92,6 +95,9 @@ class AboutMeListView(generic.ListView):
 
         # getting the project categories
         context['categories'] = get_categories()
+
+        #getting timelines
+        context['timelines'] = Timeline.objects.all().order_by('-date')
 
         # getting the day, year and week
         context['day'], context['year'], context['week'] = get_day_year_week()

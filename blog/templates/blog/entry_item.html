@@ -1,16 +1,16 @@
 <div class="w3-card-4 w3-margin-top w3-margin-bottom" style="border-radius: 5px 5px 5px 5px">
     {% if entry.image %}
     <div>
-        <img src="{{ entry.image }}" class="w3-image entry-image" style="border-radius: 5px 5px 0 0"/>
+        <img src="{{ entry.image.url }}" class="w3-image entry-image" style="border-radius: 5px 5px 0 0"/>
     </div>
     {% endif %}
-    <div class="w3-container w3-white w3-border-green w3-bottombar"
+    <div class="w3-container w3-white w3-border-purple w3-bottombar"
          style="border-radius: 0 0 5px 5px">
         <p class="w3-large">{{ entry.headline|title }} <br/>
             <span class="w3-small"><i class="fa fa-calendar"></i> {{ entry.pub_date }} <br/>
                 <i class="fa fa-commenting-o"></i> Comments:
-                <span class="w3-tag w3-text-green">{{ entry.comments }}</span></span></p>
+                <span class="w3-tag w3-text-purple">{{ entry.comments }}</span></span></p>
         <p class="shorter-content">{{ entry.preview_content }}</p>
-        <a href="/blog/detail/{{ entry.pk }}" class="w3-button w3-green w3-margin-bottom"><b><i class="fa fa-eye"></i> Read more</b></a>
+        <a href="/blog/detail/{{ entry.pk }}" class="w3-button w3-purple w3-margin-bottom"><b><i class="fa fa-eye"></i> Read more</b></a>
     </div>
 </div>
