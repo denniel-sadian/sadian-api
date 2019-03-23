@@ -10,6 +10,7 @@ router.register('days', apiviews.DayViewSet, base_name='days')
 
 api_patterns = [
     path('about/', apiviews.AboutMeListView.as_view(), name='about_me'),
+    path('timeline/', apiviews.TimelineListView.as_view(), name='timeline'),
     path('contact/', apiviews.MessageCreateView.as_view(), name='contact')
 ]
 api_patterns += router.urls

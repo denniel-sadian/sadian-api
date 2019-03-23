@@ -53,6 +53,12 @@ class AboutMeListView(generics.ListAPIView):
     serializer_class = serializers.AboutMeSerializer
 
 
+class TimelineListView(generics.ListAPIView):
+    permission_classes = ()
+    queryset = models.Timeline.objects.all()
+    serializer_class = serializers.TimelineSerializer
+
+
 class MessageCreateView(generics.CreateAPIView):
     permission_classes = ()
     serializer_class = serializers.CommentSerializer
