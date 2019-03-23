@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404
 
 from .models import Entry, Comment
 from .forms import CommentForm
-from personal.views import get_day_year_week
 
 from django.utils import timezone
 from django.core.paginator import Paginator
@@ -33,8 +32,6 @@ class EntryListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
         return context
 
 

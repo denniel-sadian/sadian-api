@@ -41,12 +41,6 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
             return models.Project.objects.all()
 
 
-class DayViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = serializers.DaySerializer
-    queryset = models.Day.objects.all()
-    permission_classes = ()
-
-
 class AboutMeListView(generics.ListAPIView):
     permission_classes = ()
     queryset = models.AboutMe.objects.all()

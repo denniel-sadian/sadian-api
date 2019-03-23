@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 
 from .models import Project
-from .models import Day
 from .models import AboutMe
 from .models import Timeline
 
@@ -14,13 +13,6 @@ def get_categories():
         if project.category not in categories:
             categories.append(project.category)
     return categories
-
-
-def get_day_year_week():
-    day = Day.objects.get(id=timezone.datetime.now().isoweekday())
-    year = timezone.datetime.now().year
-    week = timezone.datetime.now().strftime('%A')
-    return day, year, week
 
 
 class ProjectListView(generic.ListView):
@@ -61,9 +53,6 @@ class ProjectListView(generic.ListView):
         # getting the project categories
         context['categories'] = get_categories()
 
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
-
         return context
 
 
@@ -80,9 +69,6 @@ class ProjectDetailView(generic.DetailView):
         # setting the current category
         context['category'] = self.object.category
 
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
-
         return context
 
 
@@ -98,8 +84,5 @@ class AboutMeListView(generic.ListView):
 
         #getting timelines
         context['timelines'] = Timeline.objects.all().order_by('-date')
-
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
 
         return context
