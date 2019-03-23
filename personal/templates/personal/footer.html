@@ -31,21 +31,21 @@ footer {
 </div>
 <script>
 function subscribe() {
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'blog:subscribe' %}",
-            data: {
-                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-                'email': $('#subscriber-email').val()
-            },
-            success: function(data) {
-                alert("Thank you for subscribing!");
-                $('#subscriber-email').val(data['email']);
-            },
-            error: function() {
-                alert("Subscriber with this email already exists. Try using something else!");
-            }
-        });
-        return false;
-    }
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'blog:subscribe' %}",
+        data: {
+            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            'email': $('#subscriber-email').val()
+        },
+        success: function(data) {
+            alert("Thank you for subscribing!");
+            $('#subscriber-email').val(data['email']);
+        },
+        error: function() {
+            alert("Subscriber with this email already exists. Try using something else!");
+        }
+    });
+    return false;
+}
 </script>
