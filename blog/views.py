@@ -66,14 +66,14 @@ class EntryDetailView(generic.DetailView):
         self.object = entry
         if entry.can_comment and form.is_valid():
             form = form.cleaned_data
-            post('https://dennielsadian.herokuapp.com'
+            post('http://127.0.0.1:8000'
                  f"{reverse_lazy('blog:comments', kwargs={'pk': pk})}",
                  data={
                      'full_name': form['full_name'],
                      'email': form['email'],
                      'content': form['content']
                  })
-        return HttpResponseRedirect(reverse_lazy('blog:detail', kwargs={'pk': entry.id}))
+        return HttpResponseRedirect(reverse_lazy('blog:detail', kwargs={'pk': entry.id})+'#commentSection')
 
 
 def my_custom_page_not_found_view(request):
