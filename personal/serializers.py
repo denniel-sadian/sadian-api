@@ -25,3 +25,9 @@ class DaySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Day
         fields = '__all__'
+
+
+class TimelineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Timeline
+        fields = '__all__'
