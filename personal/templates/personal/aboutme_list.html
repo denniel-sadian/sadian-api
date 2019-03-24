@@ -145,6 +145,11 @@
     left: 0%;
   }
 }
+
+.image-holder {
+  background: linear-gradient(#9c27b0, #111111);
+  border-radius: 8px 8px 0px 0px;
+}
 </style>
 
 <div class="w3-container w3-margin-top w3-center w3-border-purple w3-bottombar" style="background:url('{% static 'images/binary.PNG' %}');
@@ -166,7 +171,9 @@
     <div class="timeline-container {% if i.left %}left{% else %}right{% endif %}">
       <div class="timeline-content w3-border w3-border-purple w3-card-4">
         {% if i.image %}
-          <img src="{{ i.image }}" class="w3-image" style="border-radius: 8px 8px 0px 0px"/>
+          <div class="image-holder">
+            <img src="{{ i.image }}" class="w3-image" style="border-radius: 8px 8px 0px 0px"/>
+          </div>
         {% endif %}
         <h2 class="w3-center w3-text-purple">
           {% if i.image == '' %}
