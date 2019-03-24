@@ -23,7 +23,6 @@ class ProjectListView(generic.ListView):
         if category:
             project_category = category
             queryset = queryset.filter(category__icontains=category.lower())
-
         # for searching
         elif search_query:
             extra['searched'] = search_query
