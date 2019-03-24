@@ -7,14 +7,6 @@ from .models import AboutMe
 from .models import Timeline
 
 
-def get_categories():
-    categories = []
-    for project in Project.objects.all():
-        if project.category not in categories:
-            categories.append(project.category)
-    return categories
-
-
 class ProjectListView(generic.ListView):
     context_object_name = 'projects'
     template_name = 'personal/project_list.html'
@@ -41,7 +33,7 @@ class ProjectListView(generic.ListView):
         if not project_category:
             project_category = 'all'
         extra['how_many_really'] = queryset.count()
-        extra['category'] = project_category
+        extra['current_category'] = project_category
 
         paginator = Paginator(queryset.all(), 12)
         self.extra_context = extra
@@ -49,9 +41,6 @@ class ProjectListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # getting the project categories
-        context['categories'] = get_categories()
 
         return context
 
@@ -63,11 +52,8 @@ class ProjectDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # getting the project categories
-        context['categories'] = get_categories()
-
         # setting the current category
-        context['category'] = self.object.category
+        context['current_category'] = self.object.category
 
         return context
 
@@ -78,9 +64,6 @@ class AboutMeListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # getting the project categories
-        context['categories'] = get_categories()
 
         # getting timelines
         context['timelines'] = Timeline.objects.all().order_by('-date')
