@@ -60,7 +60,7 @@ REST_FRAMEWORK = {
 
 # Personal
 PROFILE_PICTURE = os.getenv('PROFILE_PICTURE',
-    'http://127.0.0.1:8000/static/images/me.jpg')
+                            'http://127.0.0.1:8000/static/images/me.jpg')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
