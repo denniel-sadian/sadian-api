@@ -7,6 +7,10 @@ from .models import AboutMe
 from .models import Timeline
 
 
+class Home(generic.TemplateView):
+    template_name = 'personal/home.html'
+
+
 class ProjectListView(generic.ListView):
     context_object_name = 'projects'
     template_name = 'personal/project_list.html'
