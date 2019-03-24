@@ -22,7 +22,8 @@ class CommentInline(admin.StackedInline):
 
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('headline', 'pub_date', 'can_comment', 'comments', 'get_status_display', 'id')
+    list_display = ('headline', 'pub_date', 'can_comment',
+                    'comments', 'get_status_display', 'id')
     search_fields = ('headline', 'content')
     actions = [delete_all]
     inlines = [CommentInline]

@@ -82,7 +82,7 @@ class AboutMeListView(generic.ListView):
         # getting the project categories
         context['categories'] = get_categories()
 
-        #getting timelines
+        # getting timelines
         context['timelines'] = Timeline.objects.all().order_by('-date')
 
         return context

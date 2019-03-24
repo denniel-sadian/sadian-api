@@ -46,7 +46,7 @@ def notify_me(sender, email, **kwargs):
 
 @receiver(comment_created)
 def notify_me_and_those_who_commented(sender, comments, who_commented, entry, **kwargs):
-    to_emails = {settings.DEFAULT_FROM_EMAIL,}
+    to_emails = {settings.DEFAULT_FROM_EMAIL, }
     for i in comments:
         if i.email != who_commented:
             to_emails.add(i.email)
