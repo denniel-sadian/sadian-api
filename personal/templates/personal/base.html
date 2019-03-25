@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="{% static 'w3.css' %}" />
 <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
 <script rel="script" src="{% static 'jquery.min.js' %}"></script>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <style>
 header, footer, .last-footer, #content { margin-left: 25% }
 #sidebar_large { display:block; width:25% }
@@ -28,14 +28,16 @@ header, footer, .last-footer, #content { margin-left: 25% }
 }
 #sidebar_large { width:25% }
 header {
-    background: url("{% static 'images/header.png' %}") no-repeat fixed;
+    background: url("{% static 'images/header.png' %}");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 header, body, footer {
     background-size: cover
 }
 .face {
-    border: 3px solid #9c27b0;
+    border: 4px solid white;
     max-height: 150px;
     min-height: 150px;
     object-fit: cover;
@@ -46,6 +48,12 @@ header, body, footer {
 }
 @media (max-width:600px) {
     #sidebar_small { width:85% }
+}
+@media (max-width:425px) {
+    #small-heading {
+        margin-top: 35px!important;
+        font-size: 40px;
+    }
 }
 </style>
 </head>
@@ -126,7 +134,7 @@ header, body, footer {
             </button>
         </form>
         <h1 class="w3-padding w3-hide-small w3-margin-top">Welcome to my Portfolio</h1>
-        <h1 class="w3-padding w3-hide-large w3-hide-medium w3-margin-top">Denniel's Portfolio</h1>
+        <h1 id="small-heading" class="w3-padding w3-hide-large w3-hide-medium w3-margin-top">Denniel's Portfolio</h1>
         {% categories current_category %}
         <div class="w3-padding w3-display-topright w3-hide-large">
             <a href="/about">
