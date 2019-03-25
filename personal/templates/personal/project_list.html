@@ -38,6 +38,49 @@
 {% endif %}
 
 {% for i in projects %}
+
+<style>
+.proj-image {
+    min-height: 250px;
+    max-height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(#9c27b0, #111111);
+}
+
+.container img {
+    vertical-align: middle;
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.container img:hover {
+    opacity: 0.5;
+}
+
+.container .content {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: #9c27b0;
+    color: #f1f1f1;
+    width: 100%;
+    padding: 5px;
+    overflow: hidden;
+    transition: 0.3s;
+    border-radius: 0px 0px 14px 14px;
+}
+.container .content h4 {
+    white-space: nowrap
+}
+</style>
+
 <div class="w3-animate-zoom w3-col l4 m6 w3-container w3-margin-top w3-margin-bottom">
     <div class="container w3-hover-shadow w3-border w3-border-purple w3-round-xlarge"
          onclick="window.location.assign('/detail/{{ i.id }}')">

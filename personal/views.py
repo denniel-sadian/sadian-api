@@ -3,24 +3,12 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 
 from .models import Project
-from .models import Day
 from .models import AboutMe
 from .models import Timeline
 
 
-def get_categories():
-    categories = []
-    for project in Project.objects.all():
-        if project.category not in categories:
-            categories.append(project.category)
-    return categories
-
-
-def get_day_year_week():
-    day = Day.objects.get(id=timezone.datetime.now().isoweekday())
-    year = timezone.datetime.now().year
-    week = timezone.datetime.now().strftime('%A')
-    return day, year, week
+class Home(generic.TemplateView):
+    template_name = 'personal/home.html'
 
 
 class ProjectListView(generic.ListView):
@@ -39,7 +27,6 @@ class ProjectListView(generic.ListView):
         if category:
             project_category = category
             queryset = queryset.filter(category__icontains=category.lower())
-
         # for searching
         elif search_query:
             extra['searched'] = search_query
@@ -49,7 +36,7 @@ class ProjectListView(generic.ListView):
         if not project_category:
             project_category = 'all'
         extra['how_many_really'] = queryset.count()
-        extra['category'] = project_category
+        extra['current_category'] = project_category
 
         paginator = Paginator(queryset.all(), 12)
         self.extra_context = extra
@@ -57,12 +44,6 @@ class ProjectListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # getting the project categories
-        context['categories'] = get_categories()
-
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
 
         return context
 
@@ -74,14 +55,8 @@ class ProjectDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # getting the project categories
-        context['categories'] = get_categories()
-
         # setting the current category
-        context['category'] = self.object.category
-
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
+        context['current_category'] = self.object.category
 
         return context
 
@@ -93,13 +68,7 @@ class AboutMeListView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # getting the project categories
-        context['categories'] = get_categories()
-
-        #getting timelines
+        # getting timelines
         context['timelines'] = Timeline.objects.all().order_by('-date')
-
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
 
         return context

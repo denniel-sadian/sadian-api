@@ -23,11 +23,6 @@ class ProjectAdmin(admin.ModelAdmin):
     actions = ['delete_selected']
 
 
-class DayAdmin(admin.ModelAdmin):
-    list_display = ('day', 'quote', 'whose')
-    actions = ['delete_selected']
-
-
 class AboutMeAdmin(admin.ModelAdmin):
     list_display = ('text',)
     actions = ['delete_selected']
@@ -44,7 +39,6 @@ class TimelineAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Project, ProjectAdmin)
-admin.site.register(Day, DayAdmin)
 admin.site.register(AboutMe, AboutMeAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Timeline, TimelineAdmin)

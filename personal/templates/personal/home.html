@@ -1,0 +1,229 @@
+{% load static %}
+{% load extras %}
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+<title>Denniel Sadian</title>
+<meta name="google-site-verification" content="FTZWO1Qq5IIiyHFq8P2FnK9nLlSAl2Ftgjtc8ppr5Is" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Hello! I'm glad you found me!" />
+<meta property="og:image" content="{% profile_picture %}" />
+<meta name="keywords" content="Denniel, Luis, Saway, Sadian, Python, Scripts, Games, GUI" />
+<meta name="author" content="Denniel Luis Saway Sadian" />
+<link rel="stylesheet" href="{% static 'w3.css' %}" />
+<link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
+<script rel="script" src="{% static 'jquery.min.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<style>
+header {
+    padding-top: 150px!important;
+    padding-bottom: 100px!important;
+}
+#header-nav {
+    background: url("{% static 'images/header.png' %}");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+header h1 {
+    font-size: 80px;
+}
+nav {
+    position: fixed;
+}
+nav a:hover, nav button:hover {
+    font-weight: bold;
+}
+.light-gray-opacity {
+    background: rgba(211, 211, 211, 0.3);
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.intro-section {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.intro-heading {
+    font-size: 50px;
+    line-height: 1;
+    margin-top: 80px;
+}
+.intro-p {
+    font-size: 21px;
+}
+.intro-img {
+    object-fit: cover;
+}
+@media (max-width:768px) {
+    header {
+        padding-top: 90px!important;
+        padding-bottom: 40px!important;
+    }
+    header h1 {
+        font-size: 60px;
+    }
+    .intro-heading {
+        margin-top: 20px;
+        font-size: 40px;
+    }
+}
+@media (max-width:425px) {
+    header h1 {
+        font-size: 50px;
+    }
+    header {
+        padding-top: 80px!important;
+        padding-bottom: 30px!important;
+    }
+    .intro-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .intro-heading {
+        margin-top: 10px;
+        font-size: 30px;
+    }
+    .intro-p {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body class="w3-light-gray">
+
+    <div id="header-nav">
+        <nav class="w3-bar w3-large w3-padding w3-text-white">
+            <div class="w3-content">
+                <a href="/" class="w3-bar-item light-gray-opacity w3-round-xxlarge w3-button ">
+                    <img src="{% static 'images/icon.png' %}" width="25"/> <span
+                         class="w3-hide-small">Denniel Luis Sadian</span>
+                </a>
+                <a href="/portfolio" class="light-gray-opacity w3-bar-item w3-round-xxlarge w3-button">
+                    <i class="fa fa-id-card"></i>
+                    <span class="w3-hide-small"> Portfolio</span></a>
+                <a href="/blog" class="light-gray-opacity w3-bar-item w3-round-xxlarge w3-button">
+                    <i class="fa fa-book"></i>
+                    <span class="w3-hide-small"> Blog</span></a>
+                <button onclick="$('#contactModal').slideDown()" class="light-gray-opacity w3-bar-item w3-round-xxlarge w3-button w3-right">
+                    <i class="fa fa-envelope"></i><span class="w3-hide-small w3-hide-medium"> Contact</span></button>
+                <a href="/about" class="light-gray-opacity w3-bar-item w3-round-xxlarge w3-button w3-right">
+                    <i class="fa fa-info-circle"></i><span class="w3-hide-small w3-hide-medium"> About</span></a>
+            </div>
+        </nav>
+    
+        <header class="w3-container w3-text-white w3-center w3-border-purple w3-bottombar">
+            <h1>Welcome to my Website!</h1>
+            <p class="w3-large">Hi, I'm Denniel! And I'm so glad that you found me!</p>
+        </header>
+    </div>
+
+    <div class="intro-section w3-container w3-padding">
+        <div class="w3-content w3-row">
+            <div class="w3-col l7 m7 w3-padding">
+                <h1 class="intro-heading">
+                    I'm a passionate programmer.
+                    <span class="w3-text-gray">I love to code.</span>
+                </h1>
+                <p class="intro-p">
+                    I mainly code in Python and JavaScript.
+                    I mostly work with Web Development. I use Django for back-end and
+                    Vue for front-end. I also have a little knowledge of some other languages.
+                    I can also do automation like web scraping. You can find my
+                    works in my <a href="/portfolio" class="w3-hover-text-purple">portfolio.</a>
+                </p>
+            </div>
+            <div class="w3-col l5 m5 w3-center w3-padding">
+                <img src="{% static 'images/binary.PNG' %}" class="intro-img w3-round-xlarge w3-image"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        <div class="w3-content">
+            <hr class="intro-sec-sep w3-border-purple"/>
+        </div>
+    </div>
+
+    <div class="intro-section w3-container w3-padding">
+        <div class="w3-content w3-row">
+            <div class="w3-col w3-center l5 m5 w3-padding w3-hide-small">
+                <img src="{% static 'images/programmer.gif' %}" class="w3-round-xlarge w3-image"/>
+            </div>
+            <div class="w3-col l7 m7 w3-padding">
+                <h1 class="intro-heading">
+                    I'm currently in Senior High.
+                    <span class="w3-text-gray">Currently waiting for graduation.</span>
+                </h1>
+                <p class="intro-p">
+                    After senior high, I'll take Computer Science in college. I'll continue to learn
+                    new things and build incredibly using the knowledge I'll be gaining there.
+                </p>
+            </div>
+            <div class="w3-col w3-center l5 m5 w3-padding w3-hide-medium w3-hide-large">
+                <img src="{% static 'images/programmer.gif' %}" class="w3-round-xlarge w3-image"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        <div class="w3-content">
+            <hr class="intro-sec-sep w3-border-purple"/>
+        </div>
+    </div>
+
+    <div class="intro-section w3-container w3-padding">
+        <div class="w3-content w3-row">
+            <div class="w3-col l7 m7 w3-padding">
+                <h1 class="intro-heading">
+                    I want to get employed!
+                    <span class="w3-text-gray">I really want to.</span>
+                </h1>
+                <p class="intro-p">
+                    I want to get a job where I can apply my skills that I love.
+                    I interact nicely with other humans. As much as possible, I try to understand them
+                    and learn from them as well.
+                </p>
+            </div>
+            <div class="w3-col l5 m5 w3-center w3-padding">
+                <img src="{% static 'images/love_coding.png' %}" class="intro-img w3-round-xlarge w3-image"/>
+            </div>
+        </div>
+    </div>
+
+    {% include 'personal/footer.html' %} {% include 'personal/contact_form.html' %}
+
+</body>
+
+<script>
+$(document).ready(function(){
+    var w = $(this);
+    var nav = $("nav");
+    var header = $("#header-nav");
+    checkNavbar();
+    $(window).scroll(function(){
+        checkNavbar();
+    });
+    function checkNavbar() {
+        if (w.scrollTop() > (header.height() - nav.height())) {
+            nav.css("background-image", "url({% static 'images/header.png' %})");
+            nav.css("background-repeat", "no-repeat");
+            nav.css("background-size", "cover");
+            nav.css("background-attachment", "fixed");
+		    nav.css("box-shadow", "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)");
+        } else {
+            nav.css("background-image", "none");
+			nav.css("box-shadow", "none");
+            nav.css("background-repeat", "none");
+            nav.css("background-size", "none");
+            nav.css("background-attachment", "none");
+        }
+    }
+});
+</script>
+
+</html>

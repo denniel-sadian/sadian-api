@@ -12,6 +12,7 @@ from rest_framework import status
 from . import serializers
 from . import models
 from .signals import subscriber_created
+from .signals import comment_created
 
 
 class EntryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -44,19 +45,8 @@ class CommentsListCreateView(generics.ListCreateAPIView):
             if serializer.is_valid():
                 serializer.save()
                 comments = models.Comment.objects.filter(entry_id=kwargs['pk'])
-                # Sending email
-                to_emails = set()
-                for i in comments:
-                    if i.email != data['email']:
-                        to_emails.add(i.email)
-                if len(to_emails) > 0:
-                    subject = 'Sombody commented'
-                    from_email = settings.DEFAULT_FROM_EMAIL
-                    contact_message = f"{data['full_name']} commented as well"
-                    send_mail(subject, contact_message, from_email, to_emails, html_message=f"""
-                        <h1>{data['full_name']} commented as well</h1><br/>
-                        <p>In this article: <a href="https://dsadian.herokuapp.com/blog/detail/{entry.id}/">{entry.headline}</a></p>
-                    """)
+                comment_created.send(self.__class__, comments=comments,
+                                     who_commented=data['email'], entry=entry)
                 return Response(data=self.serializer_class(instance=comments,
                                                            many=True).data,
                                 status=status.HTTP_200_OK)

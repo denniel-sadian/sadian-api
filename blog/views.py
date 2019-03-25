@@ -5,10 +5,10 @@ from django.views import generic
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 from .models import Entry, Comment
 from .forms import CommentForm
-from personal.views import get_day_year_week
 
 from django.utils import timezone
 from django.core.paginator import Paginator
@@ -33,8 +33,6 @@ class EntryListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
         return context
 
 
@@ -50,8 +48,6 @@ class EntryDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        # getting the day, year and week
-        context['day'], context['year'], context['week'] = get_day_year_week()
         # comments
         all_comments = self.object.comment_set.all()
         paginator = Paginator(all_comments, 10)
@@ -70,13 +66,14 @@ class EntryDetailView(generic.DetailView):
         self.object = entry
         if entry.can_comment and form.is_valid():
             form = form.cleaned_data
-            post(f'https://dsadian.herokuapp.com/blog/api/entries/{pk}/comments/',
+            post('http://127.0.0.1:8000'
+                 f"{reverse_lazy('blog:comments', kwargs={'pk': pk})}",
                  data={
                      'full_name': form['full_name'],
                      'email': form['email'],
                      'content': form['content']
                  })
-        return HttpResponseRedirect(f'/blog/detail/{entry.id}/#commentSection')
+        return HttpResponseRedirect(reverse_lazy('blog:detail', kwargs={'pk': entry.id})+'#commentSection')
 
 
 def my_custom_page_not_found_view(request):

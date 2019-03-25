@@ -6,7 +6,6 @@ from . import apiviews
 
 router = DefaultRouter()
 router.register('projects', apiviews.ProjectViewSet, base_name='projects')
-router.register('days', apiviews.DayViewSet, base_name='days')
 
 api_patterns = [
     path('about/', apiviews.AboutMeListView.as_view(), name='about_me'),

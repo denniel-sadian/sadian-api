@@ -17,7 +17,7 @@ footer {
     <div style="font-size:40px">
         <a style="color: #3b5998" href="https://www.facebook.com/dennielsadian" class="w3-hover-opacity"><i class="fa fa-facebook-square"></i></a>
         <a style="color: #1DA1F2" href="https://twitter.com/dennielsadian" class="w3-hover-opacity"><i class="fa fa-twitter"></i></a>
-        <a style="color: #333" href="https://github.com/denniel-sadian" class="w3-hover-opacity"><i class="fa fa-github"></i></a>
+        <a style="color: #333" href="https://github.com/denniel-sadian" class="w3-hover-opacity"><i class="fa fa-github-alt"></i></a>
     </div>
     <form id="subscribe-form" onsubmit="return subscribe()" class="w3-container" style="min-width:300px">
         <input type="email" id="subscriber-email" class="w3-hover-light-gray" style="padding:8px; border:3px solid #9c27b0; border-right:none; border-radius:32px 0px 0px 32px;"
@@ -31,21 +31,21 @@ footer {
 </div>
 <script>
 function subscribe() {
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'blog:subscribe' %}",
-            data: {
-                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-                'email': $('#subscriber-email').val()
-            },
-            success: function(data) {
-                alert("Thank you for subscribing!");
-                $('#subscriber-email').val(data['email']);
-            },
-            error: function() {
-                alert("Subscriber with this email already exists. Try using something else!");
-            }
-        });
-        return false;
-    }
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'blog:subscribe' %}",
+        data: {
+            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            'email': $('#subscriber-email').val()
+        },
+        success: function(data) {
+            alert("Thank you for subscribing!");
+            $('#subscriber-email').val(data['email']);
+        },
+        error: function() {
+            alert("Subscriber with this email already exists. Try using something else!");
+        }
+    });
+    return false;
+}
 </script>

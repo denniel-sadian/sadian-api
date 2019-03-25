@@ -19,9 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('personal.urls')),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
-    path('', include('personal.urls'))
+    path('extras/', include('custom_tags_filters.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'blog.views.my_custom_page_not_found_view'

@@ -2,7 +2,7 @@ from django import template
 from django.utils import timezone
 from django.conf import settings
 
-from personal.models import Day
+from ..models import Day
 
 register = template.Library()
 
