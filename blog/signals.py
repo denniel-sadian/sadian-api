@@ -22,7 +22,7 @@ def notify_subscribers(sender, article, **kwargs):
         from_email = settings.DEFAULT_FROM_EMAIL
         message = 'New article to read!'
         send_mail(subject, message, from_email, to_emails, html_message=f"""
-            <h1>Read it here: <a href="https://denniel.herokuapp.com{reverse_lazy('blog:detail', kwargs={'pk', article.id})}">
+            <h1>Read it here: <a href="https://denniel.herokuapp.com{reverse_lazy('blog:detail', kwargs={'pk': article.id})}">
             {article.headline}</a></h1>""")
 
 
@@ -50,11 +50,12 @@ def notify_me_and_those_who_commented(sender, comments, who_commented, entry, **
     for i in comments:
         if i.email != who_commented:
             to_emails.add(i.email)
+    to_emails = list(to_emails)
     subject = 'Sombody commented'
     from_email = settings.DEFAULT_FROM_EMAIL
     contact_message = f"{who_commented} commented!"
     send_mail(subject, contact_message, from_email, to_emails, html_message=f"""
-        <h1>{who_commented} commented as well</h1><br/>
-        <p>In this article:
-        <a href="https://denniel.herokuapp.com{reverse_lazy('blog:detail', kwargs={'pk', entry.id})}">
-        {entry.headline}</a></p>""")
+        <p>{who_commented} commented as well</p><br/>
+        <h1>In this article:
+        <a href="https://denniel.herokuapp.com{reverse_lazy('blog:detail', kwargs={'pk': entry.id})}">
+        {entry.headline}</a></h1>""")

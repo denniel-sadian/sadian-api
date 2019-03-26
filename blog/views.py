@@ -66,7 +66,7 @@ class EntryDetailView(generic.DetailView):
         self.object = entry
         if entry.can_comment and form.is_valid():
             form = form.cleaned_data
-            post('http://denniel.herokuapp.com'
+            post('https://denniel.herokuapp.com'
                  f"{reverse_lazy('blog:comments', kwargs={'pk': pk})}",
                  data={
                      'full_name': form['full_name'],
