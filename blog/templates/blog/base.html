@@ -30,23 +30,19 @@ header {
 }
 header div h1 {
     letter-spacing: 10px;
+    font-size: 80px;
+    line-height: 1;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 #largeNav {
     background: url("{% static 'images/body.png' %}") no-repeat fixed;
     background-size: cover;
 }
-@media (min-width: 320px) and (max-width: 768px) {
+@media (max-width: 425px) {
     header div h1 {
-        font-size: 40px;
-        letter-spacing: 0;
-    }
-    .entry-image {
-        height: 200px;
-    }
-}
-@media (min-width: 769px) {
-    header div h1 {
-        font-size: 80px;
+        font-size: 50px;
+        letter-spacing: 0px;
     }
 }
 </style>
@@ -68,11 +64,11 @@ w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background
                 <i class="fa fa-search"></i>
             </button>
         </form>
-        <a href="/blog" class="w3-bar-item w3-button">
+        <a href="/" class="w3-bar-item w3-button">
             <b>
                 <i class="fa fa-home"></i> Home</b>
         </a>
-        <a href="/" class="w3-bar-item w3-button">
+        <a href="/portfolio" class="w3-bar-item w3-button">
             <b>
                 <i class="fa fa-coffee"></i> Portfolio</b>
         </a>
@@ -94,7 +90,7 @@ w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background
         style="background:none">
         <i class="fa fa-list-ul"></i>
     </button>
-    <header class="w3-container w3-purple w3-padding w3-border-purple w3-bottombar">
+    <header class="w3-container w3-purple w3-padding w3-border-gray w3-bottombar">
         <div class="w3-content w3-padding w3-margin-top w3-center">
             <h1>Code Philosophy</h1>
             <p class="w3-large">Welcome to the blog of
@@ -104,13 +100,13 @@ w3-hide-large w3-large w3-text-white" style="display:none; width:85%; background
         </div>
     </header>
 
-    <nav id="largeNav" class="w3-bar w3-black w3-large w3-border-purple w3-bottombar w3-hide-small">
+    <nav id="largeNav" class="w3-bar w3-black w3-large w3-border-gray w3-bottombar w3-hide-small">
         <div class="w3-content">
-            <a href="/blog" class="w3-bar-item w3-button">
+            <a href="/" class="w3-bar-item w3-button">
                 <b>
                     <i class="fa fa-home"></i> Home</b>
             </a>
-            <a href="/" class="w3-bar-item w3-button">
+            <a href="/portfolio" class="w3-bar-item w3-button">
                 <b>
                     <i class="fa fa-coffee"></i> Portfolio</b>
             </a>

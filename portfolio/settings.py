@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'heyheyhey')
+SECRET_KEY = os.getenv('SECRET_KEY', 'hey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -156,13 +156,14 @@ DEFAULT_FILE_STORAGE = 'portfolio.storage_backends.MediaFileStorage'
 
 
 # Sendgrid settings
-SEND_GRID_API_KEY = os.getenv('SEND_GRID_API_KEY')
+SEND_GRID_API_KEY = os.getenv('SEND_GRID_API_KEY',
+    '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')
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'dennielsadian')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'sawaysadian30bonbon')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'sadiandenniel@gmail.com')
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Received from DSADIAN'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
