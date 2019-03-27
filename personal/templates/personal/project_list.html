@@ -97,7 +97,7 @@
 <div class="w3-container w3-center w3-margin-bottom">
     <span class="step-links">
         {% if projects.has_previous %}
-        <a href="{% url 'personal:index' %}?page={{ projects.previous_page_number }}{% if searched %}&q={{ searched }}{% endif %}{% if category and category != 'all' %}&category={{ category }}{% endif %}" style="text-decoration:none"
+        <a href="{% url 'personal:portfolio' %}?page={{ projects.previous_page_number }}{% if searched %}&q={{ searched }}{% endif %}{% if category and category != 'all' %}&category={{ category }}{% endif %}" style="text-decoration:none"
            class="w3-button w3-gray w3-hover-purple w3-round-xxlarge">
             <i class="fa fa-chevron-left"></i></a>
         {% endif %}
@@ -109,7 +109,7 @@
             {{ projects.number }} of {{ projects.paginator.num_pages }}
         </span>
         {% if projects.has_next %}
-        <a href="{% url 'personal:index' %}?page={{ projects.next_page_number }}{% if searched %}&q={{ searched }}{% endif %}{% if category and category != 'all' %}&category={{ category }}{% endif %}"
+        <a href="{% url 'personal:portfolio' %}?page={{ projects.next_page_number }}{% if searched %}&q={{ searched }}{% endif %}{% if category and category != 'all' %}&category={{ category }}{% endif %}"
            style="text-decoration:none" class="w3-button w3-gray w3-hover-purple w3-round-xxlarge">
             <i class="fa fa-chevron-right"></i></a>
         {% endif %}
