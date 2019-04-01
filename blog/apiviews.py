@@ -21,6 +21,9 @@ class EntryViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = models.Entry.objects.filter(status='PB')
+        search_query = self.request.GET.get('q')
+        if search_query:
+            return queryset.filter(headline__icontains=search_query)
         return queryset
 
 
@@ -30,7 +33,7 @@ class CommentsListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = models.Comment.objects.filter(entry_id=self.kwargs['pk'])
-        return queryset
+        return queryset.order_by('-when')
 
     def create(self, request, **kwargs):
         data = request.data
@@ -81,17 +84,17 @@ class ArchiveView(views.APIView):
     def get(request):
         ar = {}
         entries = models.Entry.objects.filter(
-            status='PB').order_by('-pub_date')
+            status='PB').order_by('pub_date__year')
         for entry in entries:
             if entry.pub_date.year not in ar:
                 year = entry.pub_date.year
-                ar[str(year)] = {}
+                ar[year] = {}
                 for i in entries.filter(pub_date__year=year):
-                    if i.pub_date.strftime('%B') not in ar[str(year)]:
+                    if i.pub_date.strftime('%B') not in ar[year]:
                         month = i.pub_date.strftime('%B')
-                        ar[str(year)][month] = []
+                        ar[year][month] = []
                         for e in entries.filter(pub_date__year=year, pub_date__month=i.pub_date.month):
-                            ar[str(year)][month].append(
+                            ar[year][month].append(
                                 [e.id, str(e.pub_date.day), e.headline])
-        print(request)
         return Response(data=ar, status=status.HTTP_200_OK)
+

@@ -19,7 +19,7 @@ def current_week_name():
 
 @register.simple_tag
 def current_day(what):
-    day = Day.objects.get(id=timezone.datetime.now().isoweekday())
+    day = Day.objects.all()[timezone.datetime.now().isoweekday()]
     if what == 'quote':
         return day.quote
     elif what == 'by':

@@ -29,9 +29,12 @@ class Project(models.Model):
         return self.description[:80]+'...'
     
     def save(self, *args, **kwargs):
+        first_time = False
         if not self.id:
-            project_created.send(sender=self.__class__, project=self)
+            first_time = True
         super().save(*args, **kwargs)
+        if first_time:
+            project_created.send(sender=self.__class__, project=self)
 
 
 class AboutMe(models.Model):

@@ -47,9 +47,12 @@ class Entry(models.Model):
         return self.headline
 
     def save(self, *args, **kwargs):
+        first_time = False
         if not self.id:
-            article_created.send(sender=self.__class__, article=self)
+            first_time = True
         super().save(*args, **kwargs)
+        if first_time:
+            article_created.send(sender=self.__class__, article=self)
 
 
 class Comment(models.Model):

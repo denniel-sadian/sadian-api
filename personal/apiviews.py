@@ -49,7 +49,7 @@ class AboutMeListView(generics.ListAPIView):
 
 class TimelineListView(generics.ListAPIView):
     permission_classes = ()
-    queryset = models.Timeline.objects.all()
+    queryset = models.Timeline.objects.all().order_by('-date')
     serializer_class = serializers.TimelineSerializer
 
 
