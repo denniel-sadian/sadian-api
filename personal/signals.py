@@ -20,5 +20,5 @@ def notify_subscribers(sender, project, **kwargs):
         message = 'New program!'
         send_mail(subject, message, from_email, to_emails, html_message=f"""
             <h1>Check it here:
-            <a href="https://sadian.herokuapp.com/portfolio/project/{project.id}?category={project.category.replace(' ', '%')}">
+            <a href="https://sadian.herokuapp.com/portfolio/project/{project.id}?category={project.category.replace(' ', '%20')}">
             {project.name}</a></h1>""")
