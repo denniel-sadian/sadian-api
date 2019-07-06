@@ -9,3 +9,5 @@ urlpatterns = [
     path('detail/<int:pk>/', views.EntryDetailView.as_view(), name='detail'),
     path('api/', include(urls_api.api_patterns))
 ]
+
+handler404 = 'blog.views.my_custom_page_not_found_view'

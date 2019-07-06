@@ -26,6 +26,11 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.ProjectSerializer
     permission_classes = ()
 
+    def get_object(self):
+        obj = super().get_object()
+        obj.increment_views()
+        return obj
+
     def get_queryset(self):
         category = self.request.GET.get('category')
         search_query = self.request.GET.get('q')

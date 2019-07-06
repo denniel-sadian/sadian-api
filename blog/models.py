@@ -29,11 +29,15 @@ class Entry(models.Model):
     image = models.URLField(blank=True)
     content = models.TextField()
     preview_content = models.TextField()
+    views = models.IntegerField(default=0)
 
     objects = models.Manager()
 
     class Meta:
         ordering = ['-pub_date']
+    
+    def __str__(self):
+        return self.headline
 
     @mark_safe
     def safe_content(self):
@@ -42,9 +46,10 @@ class Entry(models.Model):
     @property
     def comments(self):
         return self.comment_set.all().count()
-
-    def __str__(self):
-        return self.headline
+    
+    def increment_views(self):
+        self.views += 1
+        self.save()
 
     def save(self, *args, **kwargs):
         first_time = False

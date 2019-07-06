@@ -19,6 +19,11 @@ class EntryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.EntrySerializer
     permission_classes = ()
 
+    def get_object(self):
+        obj = super().get_object()
+        obj.increment_views()
+        return obj
+
     def get_queryset(self):
         queryset = models.Entry.objects.filter(status='PB')
         search_query = self.request.GET.get('q')

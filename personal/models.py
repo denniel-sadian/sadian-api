@@ -15,6 +15,7 @@ class Project(models.Model):
     date_created = models.DateField()
     link = models.URLField(blank=True)
     description = models.TextField()
+    views = models.IntegerField(default=0)
 
     objects = models.Manager()
 
@@ -27,6 +28,10 @@ class Project(models.Model):
     @property
     def short_description(self):
         return self.description[:80]+'...'
+    
+    def increment_views(self):
+        self.views += 1
+        self.save()
     
     def save(self, *args, **kwargs):
         first_time = False

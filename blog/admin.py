@@ -25,13 +25,11 @@ class EntryAdmin(admin.ModelAdmin):
     list_display = ('headline', 'pub_date', 'can_comment',
                     'comments', 'get_status_display', 'id')
     search_fields = ('headline', 'content')
-    actions = [delete_all]
     inlines = [CommentInline]
 
 
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ('email',)
-    actions = [delete_all]
 
 
 admin.site.add_action(delete_all, 'delete_all')

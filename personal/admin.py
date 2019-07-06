@@ -18,24 +18,21 @@ def rearrange_timelines(model_admin, request, queryset):
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'language_used',
-                    'image', 'link', 'date_created')
+                    'image', 'link', 'views', 'date_created')
     search_fields = ('name', 'category', 'language_used')
-    actions = ['delete_selected']
 
 
 class AboutMeAdmin(admin.ModelAdmin):
     list_display = ('text',)
-    actions = ['delete_selected']
 
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'email', 'date_time', 'shorten_content')
-    actions = ['delete_selected']
 
 
 class TimelineAdmin(admin.ModelAdmin):
     list_display = ('date', 'title', 'left')
-    actions = ['delete_selected', rearrange_timelines]
+    actions = [rearrange_timelines]
 
 
 admin.site.register(Project, ProjectAdmin)
