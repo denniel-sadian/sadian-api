@@ -21,6 +21,7 @@ class EntryViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_object(self):
         obj = super().get_object()
+        obj.increment_views()
         return obj
 
     def get_queryset(self):
