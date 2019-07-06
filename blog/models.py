@@ -29,6 +29,7 @@ class Entry(models.Model):
     image = models.URLField(blank=True)
     content = models.TextField()
     preview_content = models.TextField()
+    views = models.IntegerField(default=0)
 
     objects = models.Manager()
 
