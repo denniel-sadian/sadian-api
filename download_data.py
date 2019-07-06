@@ -15,7 +15,7 @@ for p in projects:
         image=p['image'],
         date_created=p['date_created'],
         link=p['link'],
-        description=['description']
+        description=p['description']
     )
 
     pub_date = models.DateTimeField()
