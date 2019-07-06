@@ -6,4 +6,6 @@ from . import apiviews
 router = DefaultRouter()
 router.register('days', apiviews.DayViewSet, base_name='days')
 
-api_patterns = router.urls
+api_patterns = [
+    path('photo/', apiviews.profile_picture, name='profile-picture')
+] + router.urls
