@@ -46,6 +46,10 @@ class Entry(models.Model):
     @property
     def comments(self):
         return self.comment_set.all().count()
+    
+    def increment_views(self):
+        self.views += 1
+        self.save()
 
     def save(self, *args, **kwargs):
         first_time = False
