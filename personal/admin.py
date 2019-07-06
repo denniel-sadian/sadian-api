@@ -18,7 +18,7 @@ def rearrange_timelines(model_admin, request, queryset):
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'language_used',
-                    'image', 'link', 'views', 'date_created')
+                    'image', 'link', 'date_created')
     search_fields = ('name', 'category', 'language_used')
 
 

@@ -44,7 +44,6 @@ class EntryDetailView(generic.DetailView):
 
     def get_object(self, queryset=None):
         obj = get_object_or_404(self.model, status='PB', pk=self.kwargs['pk'])
-        obj.increment_views()
         return obj
 
     def get_context_data(self, **kwargs):
