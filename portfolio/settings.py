@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import django_heroku
 import os
+import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,9 +28,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', 'hey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = json.loads(os.getenv('DEBUG', 'false'))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = json.loads(os.getenv('ALLOWED_HOSTS', '["*"]'))
 
 
 # Application definition
@@ -59,8 +63,7 @@ REST_FRAMEWORK = {
 }
 
 # Personal
-PROFILE_PICTURE = os.getenv('PROFILE_PICTURE',
-                            'http://127.0.0.1:8000/static/images/me.jpg')
+PROFILE_PICTURE = os.getenv('PROFILE_PICTURE', '/static/images/me.jpg')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,8 +105,12 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', 'sadian_db'),
+        'USER': os.getenv('DB_USER', 'sadian'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'sadian'),
+        'HOST': os.getenv('DB_HOST', 'db'),
+        'PORT': os.getenv('DB_PORT', '5432')
     }
 }
 
@@ -138,7 +145,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -155,17 +162,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'portfolio.storage_backends.MediaFileStorage'
 
 
-# Sendgrid settings
-SEND_GRID_API_KEY = os.getenv('SEND_GRID_API_KEY',
-    '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')
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'dennielsadian')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'sawaysadian30bonbon')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# Emails
+
+EMAIL_BACKEND = os.getenv(
+    'EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+SENDGRID_SANDBOX_MODE_IN_DEBUG = json.loads(
+    os.getenv('SENDGRID_SANDBOX_MODE_IN_DEBUG', 'false'))
+
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'sadiandenniel@gmail.com')
-ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Received from DSADIAN'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'mail')
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+EMAIL_PORT = os.getenv('EMAIL_PORT', '1025')
+
+EMAIL_USE_TLS = json.loads(os.getenv('EMAIL_USE_TLS', 'false'))
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
